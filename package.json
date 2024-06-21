@@ -1,10 +1,11 @@
 {
-  "name": "profile",
+  "name": "linkedin-profile-scraper",
   "version": "1.0.0",
-  "description": "edcv",
+  "description": "A simple LinkedIn profile scraper using Puppeteer and Express",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "npm install --omit=dev"
   },
   "dependencies": {
     "axios": "^1.7.2",
