@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer');
 const { URL } = require('url');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // Use the port from the environment variable or default to 3000
 
 app.use(cors());
 app.use(express.static('public')); // Serve static files from the "public" directory
@@ -25,7 +25,10 @@ app.get('/search', async (req, res) => {
     }
 
     try {
-        const browser = await puppeteer.launch({ headless: true });
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox'] // Required for many hosting platforms
+        });
         const page = await browser.newPage();
 
         // Set user agent to a mobile device
